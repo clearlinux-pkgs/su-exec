@@ -4,7 +4,7 @@
 #
 Name     : su-exec
 Version  : 0.2
-Release  : 2
+Release  : 3
 URL      : https://github.com/ncopa/su-exec/archive/v0.2.tar.gz
 Source0  : https://github.com/ncopa/su-exec/archive/v0.2.tar.gz
 Summary  : No detailed summary available
@@ -39,29 +39,30 @@ license components for the su-exec package.
 
 %prep
 %setup -q -n su-exec-0.2
+cd %{_builddir}/su-exec-0.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562824869
+export SOURCE_DATE_EPOCH=1604360680
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1562824869
+export SOURCE_DATE_EPOCH=1604360680
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/su-exec
-cp LICENSE %{buildroot}/usr/share/package-licenses/su-exec/LICENSE
+cp %{_builddir}/su-exec-0.2/LICENSE %{buildroot}/usr/share/package-licenses/su-exec/ec71e313e5f81c96b5dfeea89a603411c6a0d254
 install -p -D -m 0755 su-exec %{buildroot}/usr/bin/su-exec
 
 %files
@@ -73,4 +74,4 @@ install -p -D -m 0755 su-exec %{buildroot}/usr/bin/su-exec
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/su-exec/LICENSE
+/usr/share/package-licenses/su-exec/ec71e313e5f81c96b5dfeea89a603411c6a0d254
